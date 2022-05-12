@@ -106,6 +106,7 @@ type AgentStartConfig struct {
 
 	// Global flags
 	Debug       bool     `cli:"debug"`
+	LogLevel    string   `cli:"log-level"`
 	NoColor     bool     `cli:"no-color"`
 	Experiments []string `cli:"experiment" normalize:"list"`
 	Profile     string   `cli:"profile"`
@@ -469,6 +470,7 @@ var AgentStartCommand = cli.Command{
 		// Global flags
 		NoColorFlag,
 		DebugFlag,
+		LogLevelFlag,
 		ExperimentsFlag,
 		ProfileFlag,
 		RedactedVars,
@@ -581,7 +583,6 @@ var AgentStartCommand = cli.Command{
 				isSetNoPlugins = true
 			}
 		}
-
 
 		// Show a warning if plugins are enabled by no-command-eval or no-local-hooks is set
 		if isSetNoPlugins && cfg.NoPlugins == false {
